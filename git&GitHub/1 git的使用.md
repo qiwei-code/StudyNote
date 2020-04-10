@@ -24,8 +24,8 @@
 3. `git add 文件名`  将文件存入“暂存区”,`git add *`  提交所有文件到“暂存区”
 4. `git commit -m 提交说明`  将文件提交到本地仓库，需要提交备注
 5. `git log`  查看提交日志
-6. `git rm --cached`  移除“缓存区”中的文件
-7. `git rest --hard commitID`
+6. `git rm --cached`  移除“缓存区”中的文件，如果不加`--cached` “工作区”中也会被移除掉
+7. `git rest --hard commitID`  恢复到指定的提交版本，`commitID`是版本号，可以通过`git log`查看。改变的是本地仓库。
 
 **有关分支的命令**
 
@@ -52,6 +52,22 @@
 
 **GitHub使用ssh免密提交**
 
-1. `ssh-keygen`  在git中使用命令ssh-keygen生成密匙
+1. `ssh-keygen`  在git中使用命令`ssh-keygen`生成密匙
 2. `id_rsa.pub`   公钥名称，`id_rsa`  私钥名称
-3. 将公钥添加到GitHub上即可
+3. 将公钥添加到`GitHub`上即可
+
+### 注意
+
+**git reset --hard/git revert/ git stash/git restore的区别** [相关博客](https://blog.csdn.net/albertsh/article/details/104719370/)
+
+* `git reset --hard 版本号`  版本回滚到某一版本，对本地版本产生影响，**不对远程分支产生影响**
+	* `--mixed` 默认选项，被回退的那些版本的修改会放在工作目录，可以先加到暂存区，然后再提交。
+	* `--soft`  被回退的那些版本的修改会被放在暂存区，可以再次提交。
+	* `--hard` 被回退的那些版本的修改会直接舍弃，好像它们没有来过一样。
+* `git revert 版本号1 版本号2`  撤销指定的一个或多个版本，**会对远程分支产生影响**，对后面和前面的版本没有影响
+* `git stash`  保存当前状态，可以理解成存档，用在切换分支时，又不想commit当前分支时使用
+* `git restore`  单纯的撤销，用“本地库中”的文件覆盖“暂存区”和本地的修改
+
+**Git 2.23 新增git switch 和 git restore 与git checkout的区别**
+
+* `git checkout 文件名`
