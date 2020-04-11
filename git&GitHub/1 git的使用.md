@@ -70,4 +70,19 @@
 
 **Git 2.23 新增git switch 和 git restore 与git checkout的区别**
 
-* `git checkout 文件名`
+**1.分支管理**
+`git checkout <分支名>` 和 `git checkout -b <分支名>`
+对应的switch命令
+`git switch <分支名>` 和 `git switch -c <分支名>`
+
+**2.文件恢复**
+`$ git restore --source HEAD~3 --staged --worktree 文件名`恢复到三次前的提交
+更多高级应用待学习
+
+
+
+
+
+
+
+
