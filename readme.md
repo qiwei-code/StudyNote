@@ -5,7 +5,7 @@
 
 
 #### 复习计划
-javaScript教程——>ES6教程（视频、电子书）——>JQuery源码——>Vue源码分析——>Vue核心技术（包含服务端渲染）——>实战项目（Vue全家桶+SSR+Koa2全栈开发美团网、）——>react
+javaScript教程——>ES6教程（视频、电子书）——>JQuery源码——>Webpack——>Vue源码分析——>Vue核心技术（包含服务端渲染）——>实战项目（Vue全家桶+SSR+Koa2全栈开发美团网、）——>react
 #### 记录规则
 
 * 大的知识点按文件夹区分
