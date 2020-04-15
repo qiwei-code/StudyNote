@@ -1,10 +1,11 @@
-## JavaScript教程复习重点一
-
-
+## JavaScript教程复习重点(基础一)
 
 [1. null与undefined区别如下](#1)
+
 [2. Base64 相关的方法](#2)
+
 [3. escape、encodeURI和encodeURIComponent的区别](#3)
+
 [4. js对象](#4)
 
 
@@ -53,12 +54,15 @@ b64Decode('JUU0JUJEJUEwJUU1JUE1JUJE')	// "你好"
 #### <span id='4'> 4. js对象 </span>
 
 **键名**
-* 对象的所有键名都是字符串（ES6 又引入了 Symbol 值也可以作为键名）,所以**可以加、也可以不加引号**
 
-**表达式还是语句？**
-对象采用大括号表示，这导致了一个问题：如果行首是一个大括号，它到底是表达式还是语句？
+* 对象的所有键名都是**字符串**（ES6 又引入了 Symbol 值也可以作为键名）,
+* 所以键名**可以加、也可以不加引号**
+
+**首行大括号，是表达式还是语句？**
+
+如果行首是一个大括号，它到底是表达式还是语句？
 ```{ foo: 123 }```
-为了避免这种歧义，JavaScript 引擎的做法是，如果遇到这种情况，无法确定是对象还是代码块，一律解释为代码块。
+为了避免歧义，JavaScript 引擎的做法是，无法确定是对象还是代码块，一律解释为代码块。
 
 **如果要解释为对象，最好在大括号前加上圆括号**
 
@@ -66,17 +70,14 @@ b64Decode('JUU0JUJEJUEwJUU1JUE1JUJE')	// "你好"
 ({ foo: 123 }) // 正确
 ({ console.log(123) }) // 报错
 ```
-
 这种差异在`eval`语句（作用是对字符串求值）中反映得最明显。
-
 ```javascript
 eval('{foo: 123}') // 123
 eval('({foo: 123})') // {foo: 123}
 ```
-
 上面代码中，如果没有圆括号，`eval`将其理解为一个代码块；加上圆括号以后，就理解成一个对象。
 
-**1 查看所有的键`Object.keys()`**
+##### 4.1 查看所有的键`Object.keys()`
 
 ```javascript
 var obj = {
@@ -88,7 +89,7 @@ Object.keys(obj);
 // ['key1', 'key2']
 ```
 
-**[2 属性删除`delete`](https://wangdoc.com/javascript/types/object.html#属性的删除：delete-命令)**
+##### [4.2 属性删除`delete`](https://wangdoc.com/javascript/types/object.html#属性的删除：delete-命令)
 
 ```javascript
 var obj = { p: 1 };
@@ -98,6 +99,64 @@ delete obj.p // true
 obj.p // undefined
 Object.keys(obj) // []
 ```
+删除一个不存在的属性，delete不报错，而且返回true，详细点击上面链接
 
-**3 判断某个属性是否存在**
+##### 4.3 判断某个属性是否存在`in `运算符（继承的也算）
 
+```js
+var obj = { p: 1 };
+'p' in obj // true
+'toString' in obj // true
+```
+
+这时，可以使用对象的`hasOwnProperty`方法判断一下，是否为对象自身的属性。
+
+```js
+var obj = {};
+if ('toString' in obj) {
+  console.log(obj.hasOwnProperty('toString')) // false
+}
+```
+
+##### 4.4 属性的遍历 `for...in` 循环
+
+- 它遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。
+- 它不仅遍历对象自身的属性，还遍历继承的属性。
+例：遍历自身属性
+```js
+var person = { name: '老张' };
+
+for (var key in person) {
+  if (person.hasOwnProperty(key)) {
+    console.log(key);
+  }
+}
+```
+#### <span id='4'> 5. [with语句(语义不明确，尽量少使用)](https://wangdoc.com/javascript/types/object.html#with-语句) </span>
+
+作用是操作同一个对象的多个属性时，提供一些书写的方便
+```js
+// 例一
+var obj = {
+  p1: 1,
+  p2: 2,
+};
+with (obj) {
+  p1 = 4;
+  p2 = 5;
+}
+// 等同于
+obj.p1 = 4;
+obj.p2 = 5;
+
+// 例二
+with (document.links[0]){
+  console.log(href);
+  console.log(title);
+  console.log(style);
+}
+// 等同于
+console.log(document.links[0].href);
+console.log(document.links[0].title);
+console.log(document.links[0].style);
+```
