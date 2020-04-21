@@ -18,8 +18,8 @@
 
 **2.1 第一次使用git的配置**
 
-* `git config --globle user.name 提交人名`  设置提交人
-* `git config --globle user.email 提交人邮箱`  设置提交人邮箱
+* `git config --global user.name 提交人名`  设置提交人
+* `git config --global user.email 提交人邮箱`  设置提交人邮箱
 * `git config list`  查看配置信息
 * 如果对上述配置信息进行修改，只需要重复执行一次
 
@@ -51,7 +51,7 @@
 **2.5 代码提交到远程仓库**
 
 * `git push 远程仓库地址 master`  提交本地仓库代码到服务器，最后是分支名称
-* `git remote add 别名 远程仓库地址`  给服务器地址添加别名
+* `git remote add 别名 远程仓库地址`  给服务器地址添加**别名**
 * `git push -u 远程仓库地址别名 master`  `-u`记住推送地址及分支，下次推送输入`git push`即可
 * `git clone 远程仓库地址`  克隆远程仓库数据到本地
 * `git pull 远程仓库地址 分支名称`  拉取远程仓库最新版本
