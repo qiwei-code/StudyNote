@@ -14,8 +14,6 @@ npm install --global vue-cli
 vue init webpack my-project
 ```
 
-![image-20200510193143955](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200510193143955.png)
-
 Vue build ==> 打包方式，回车即可；
 
 Install vue-router ==> 是否要安装 vue-router；
@@ -173,8 +171,6 @@ npm install -g nrm
 ```
 nrm ls
 ```
-
-![image-20200510185019765](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200510185019765.png)
 
 * 切换镜像
 

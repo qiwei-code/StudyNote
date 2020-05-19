@@ -1,6 +1,6 @@
 ## ECMAScript 6 复习重点
 
-使用npm创建es10项目
+* 1. 使用npm创建es10项目
 
 ```
 npm i es10-cli -g	//es10脚手架
@@ -9,3 +9,4 @@ cd projectName
 npm start
 ```
 
+* 2. es6中禁止使用arguments
