@@ -96,6 +96,6 @@
 7. `outline`可拆分成`outline-width`，`outline-style`，`outline-color`
 
 
-8. calc()函数
+8. `calc()`函数
 
 

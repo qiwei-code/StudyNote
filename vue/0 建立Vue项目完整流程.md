@@ -97,40 +97,6 @@ npm run dev  或者  npm run serve  或者   npm start
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #### n. 修改npm镜像地址
 
 ##### n.1 直接编辑npm文件（后面还是直接使用npm命令调用）
@@ -138,8 +104,6 @@ npm run dev  或者  npm run serve  或者   npm start
 ```
 npm config edit
 ```
-
-![image-20200510183823104](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200510183823104.png)
 
 直接修改registry地址
 
