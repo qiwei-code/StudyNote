@@ -96,6 +96,5 @@
 7. `outline`可拆分成`outline-width`，`outline-style`，`outline-color`
 
 
-8. `calc()`函数
-
-
+8. `calc()`可用于计算的函
+9. `filter: blur(20px)`毛玻璃效果
