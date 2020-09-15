@@ -10,3 +10,4 @@ npm start
 ```
 
 * 2. es6中禁止使用arguments
+
