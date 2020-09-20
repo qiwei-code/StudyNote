@@ -5,12 +5,13 @@
 ```
 window.location.reload() // 页面刷新
 
-window.history.go(1) // 前进
+History.back()
+// 移动到上一个网址，等同于点击浏览器的后退键。对于第一个访问的网址，该方法无效果。
 
-window.history.go(-1) // 仅后退
+History.forward()
+// 移动到下一个网址，等同于点击浏览器的前进键。对于最后一个访问的网址，该方法无效果。
 
-window.history.forward() //前进
-
-window.history.back() 后退+刷新
+History.go()
+// 接受一个整数作为参数，以当前网址为基准，移动到参数指定的网址，比如go(1)相当于forward()，go(-1)相当于back()。如果参数超过实际存在的网址范围，该方法无效果；如果不指定参数，默认参数为0，相当于刷新当前页面。
 ```
 
