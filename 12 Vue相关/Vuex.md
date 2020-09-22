@@ -91,6 +91,50 @@ store.dispatch({
 
 #### 1. Vuex中的模块
 
+避免store太庞大，store可以分成模块。每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割
+
+```js
+const moduleA = {
+  state: () => ({ ... }),	// 注意：这里的写法与非模块不一样
+  mutations: { ... },
+  actions: { ... },
+  getters: { ... }
+}
+const moduleB = {
+  state: () => ({ 
+  	num: 1
+  }),
+  getters: {
+    // 局部getters会暴露3个参数出来
+  	doubleNum(state, getters, rootState) {
+      return state.num * 2
+    }
+  },
+  mutations: { 
+    increment (state) {
+      // 这里的 state对象是模块的局部状态
+      state.num++
+    }             
+  },
+  actions: { 
+      // context对象
+     actionIncrement({state, commit, rootState}) {
+        if ((state.count + rootState.count) % 2 === 1) {
+           commit('increment')
+        }
+     }
+  }
+}
+const store = new Vuex.Store({
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+store.state.a // -> moduleA 的状态
+store.state.b // -> moduleB 的状态
+```
+
 
 
 #### 2. Vuex中模块的参数接收
