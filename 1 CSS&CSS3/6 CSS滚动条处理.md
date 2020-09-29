@@ -22,7 +22,6 @@
     width: 30px;
     height: 300px;
     margin: 0 auto;
- 
 }
 .test-1::-webkit-scrollbar {/*滚动条整体样式*/
     width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
