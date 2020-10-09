@@ -68,7 +68,7 @@
 <script type="text/javascript"> 
 function faterFun() 
 { 
-    $('#son').contents().find("#b").val("父页面传的值！");  
+    $('#son').contents().find("#b").val("父页面传的值！");  // 建议传给子页面的input触发onchange事件从而立即调用
 } 
 </script> 
 <iframe id="son" name="son" src="son.html" width="400" height="200"></iframe><br /> 
