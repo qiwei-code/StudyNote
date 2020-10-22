@@ -13,5 +13,6 @@ new Date().getMilliseconds();	//当前毫秒(0-999)
 new Date().toLocaleString(); 	//当前日期和时间字符串     "2019/3/13 下午6:35:25"
 new Date().toLocaleDateString(); 	//当前日期字符串       "2019/3/13" 
 new Date().toLocaleTimeString();	//当前时间字符串       "下午6:34:22"
+new Date().getDay();	// 获取星期几，0为星期天，1为星期一，2为星期二......
 ```
 
