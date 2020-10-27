@@ -1,6 +1,6 @@
 ## 响应式布局中关于rem的适配方案
 
-#### 一	移动端宽度`750px`如何转换成`rem`开发
+#### 一	移动端宽度`750px`如何转换成`rem`开发（开发时直接使用rem为单位）
 
 1. 由于移动端屏幕宽度一般在`375`左右，所以开发时通常需要将整体尺寸除以`2`
 
@@ -48,13 +48,101 @@
      window.addEventListener('resize',change,false);})();
    ```
 
+
+
+
+#### 二 `vue-cli3.0`结合`lib-flexible`、`px2rem`实现移动端适配（使用`px`开发后利用插件转换为`rem`）
+
+1. 项目中安装`lib-flexible`和`postcss-px2rem`
+
+   ```commonlisp
+   npm install lib-flexible --save
+   npm install postcss-px2rem --save-dev
+   ```
+
+2. 在项目的入口`main.js`文件中引入`lib-flexible`
+
+   ```
+   import 'lib-flexible'
+   ```
+
+3. 在`vue.config.js`中配置文件
+
+   ```
+   module.exports = {
+       css: {
+           loaderOptions: {
+             postcss: {
+        // 这是rem适配的配置  注意： remUnit在这里要根据lib-flexible的规则来配制，如果您的设计稿是750px的，建议使用37.5。
+                plugins: [
+                 require("postcss-px2rem")({
+                   remUnit: 37.5
+             })
+           ]
+         }
+       }
+   }
+   ```
+
+4. 引入三方库可能出现的问题以及解决方案
+
+   如果引入了第三方库，以上以上配置可能会出问题，所有引入组件都变小了，原因是引入组件的`px`都被替换成了`rem`，组件中的`dpr`（设备像素比）为1，组件中的样式也是基于`dpr=1`写的，当我们的`dpr`为2时，组件就会缩小`50%`
+
+   解决方案，首先卸载`postcss-px2rem`，安装`postcss-px2rem-exclude`
+
+   ```
+   npm  uninstall postcss-px2rem --save-dev
+   npm  install postcss-px2rem-exclude --save
+   ```
+
+   然后在`postcss.config.js`中配置
+
+   ```js
+   // postcss.config.js
    
+   module.exports = {
+     plugins: {
+       autoprefixer: {},
+       "postcss-px2rem-exclude": {
+         remUnit: 75,
+         exclude: /node_modules|folder_name/i
+       }
+     }
+   };
+   ```
+
+   如果没有这个文件也可以在`package.json`中配置
+
+   ```js
+   // package.json
+   
+   "postcss": {
+       "plugins": {
+         "autoprefixer": {},
+         "postcss-px2rem-exclude":{
+             "remUnit": 75,
+             "exclude":"/node_modules|floder_name/i"
+         }
+       }
+     },
+   ```
 
 
 
+#### 三 头部`meta`标签使用`viewport`
 
+`viewport `是用户网页的可视区域，中文叫"视区"，一般对应如下设置
 
+```html
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+```
 
-
-2. 
+|    属性名     |          取值           | 描述                                                |
+| :-----------: | :---------------------: | --------------------------------------------------- |
+|     width     | 正整数 或 device-width  | 定义视口的宽度，单位为像素                          |
+|    height     | 正整数 或 device-height | 定义视口的高度，单位为像素，一般不用                |
+| initial-scale |       [0.0-10.0]        | 定义初始缩放值                                      |
+| minimum-scale |       [0.0-10.0]        | 定义缩小最小比例，它必须小于或等于maximum-scale设置 |
+| maximum-scale |       [0.0-10.0]        | 定义放大最大比例，它必须大于或等于minimum-scale设置 |
+| user-scalable |         yes/no          | 定义是否允许用户手动缩放页面，默认值yes             |
 
