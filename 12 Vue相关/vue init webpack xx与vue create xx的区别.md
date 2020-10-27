@@ -1,6 +1,12 @@
 ## vue init webpack xx与vue create xx的区别
 
-#### 1.vue init webpack app
+#### 0. vue-cli2.x升级到vue-cli3.x
+
+...
+
+
+
+#### 1.vue init webpack app——vue-cli2.x初始化方式
 
 使用`vue init webpack xx`创建项目目录如下
 
@@ -62,7 +68,7 @@ module.exports = {
 }
 ```
 
-#### 2. vue create app
+#### 2. vue create app——vue-cli3.x初始化方式
 
 使用vue create xx创建项目产生目录如下
 
@@ -83,4 +89,22 @@ module.exports = {
 `package.json`：项目的配置文件，用于描述一个项目，包括我们init时的设置、开发环境、生成环境的依赖插件及版本等。 
 
 `package-lock.json`：普通`package.json`文件`“^2.0”`这样写的，意味着版本可以大于等于`2.0`，如此就会出现各种错误。
+
+
+
+在vue-cli3.x中没有`.postcssrc.js`，需要在package.json中配置
+
+```js
+// package.json
+
+"postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-px2rem-exclude":{
+          "remUnit": 75,
+          "exclude":"/node_modules|floder_name/i"
+      }
+    }
+ }
+```
 
