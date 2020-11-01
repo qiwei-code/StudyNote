@@ -76,6 +76,16 @@
   ctx.arc(400, 150, 100, 0, Math.PI * 2, true)
   ctx.fill()
   
+  // 创建画刷
+  let img = new Image()
+  img.src = "./xxx.png"
+  img.onload = function() {
+    let pattern = ctx.createPattern(img, 'repeat')	// 创建出图形画刷，海鸥no-repeat/repeat-x/repeat-y
+    ctx.fillStyle = pattern
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }
+  
+  
   // canvas中显示文字
   let str = "这是一个测试"
   ctx.font = "50px sans-serif" // 大小、字体
@@ -89,10 +99,50 @@
   let width = ctx.measureText(str).width
   console.log(width, '输出文本的宽度')
   
-  // canvas中的图片
+  // canvas中绘制图片
+  let img = new Image()
+  img.src = "testImg.png"
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0)	// 后面两个参数为图片绘制的位置
+  }
   
+  // canvas中的区域剪切，只会在剪切路径内显示
+  ctx.arc(300, 100, 200, 0, Math.PI * 2, true)
+  // 剪辑区域
+  ctx.clip()
+  ctx.fillStyle = "#f00"
+  ctx.fillRect(100, 100, 200, 200)
+  ctx.beginPath()	// 写了beginPath()还是会被剪切
+  ctx.arc(400, 300, 100, 0, Math.PI * 2, true)
+  ctx.fillStyle = "#00f"
+  ctx.fill()
   
+  // canvas中设置阴影
+  ctx.shadowOffsetX = 100	// 阴影偏移
+  ctx.shadowOffsetY = 100
+  ctx.shadowColor = 'rgba(0, 0, 0, .8)'
+  ctx.shadowBlur = 10	// 模糊半径
+  ctx.fillStyle = 'rgba(0, 255, 0, .7)'
+  ctx.fillRect(100, 100, 200, 300)
+	// 设置阴影后后面都会有
+  ctx.font = '100px yahei'
+  ctx.fillText('测试这是', 300, 300)
   
+  // 贝塞尔曲线绘制
+  ctx.lineWidth = 6
+  ctx.strokeStyle = '#0090D2'
+  ctx.beginPath()
+  ctx.moveTo(250, 350)	// 左边点
+  ctx.quadraticCurveTo(280, 140, 400, 360)	// 中间点与右边点
+  // ctx.bezierCurveTo(290, 180, 360, 100, 500, 380)	// 左上，右上，右边点
+  ctx.stroke()
+  
+  // 清空区域内图形
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  
+  // 离屏幕技术
+  // 重叠canvas
+  ctx.drawImg(offCanvas, 0, 0, offCanvas.width, offCanvas.height)
   
 </script>
 ```
