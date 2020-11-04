@@ -25,7 +25,7 @@
   ctx.moveTo(100, 0)	// 笔从(100, 0)开始
   ctx.lineTo(200, 100)
   ctx.lineTo(300, 100)
-  ctx.lineWidth = "10"
+  ctx.lineWidth = "10"	// 线宽
   ctx.closePath()	// ** 闭合路径
   ctx.strokeStyle = "#0F0"	// 绘制颜色
   ctx.stroke()	// 实际绘制
@@ -48,11 +48,11 @@
   ctx.fill() // 闭合，然后把内部区域填充,ctx.stroke() 描边，可以同时使用
   
   // 旋转
-  ctx.stroke(Math.PI / 4)	// 顺时针弧度
+  ctx.rotate(Math.PI / 4)	// 顺时针弧度
   //移动
   ctx.translate(100, 200)
   // 缩放
-  ctx.scale(1, 0.5)	// x轴缩放、y轴缩放
+  ctx.scale(1, .5)	// x轴缩放、y轴缩放
   // 上面的效果会叠加，变换的是当前整个画布
   
   // 在最前面使用
