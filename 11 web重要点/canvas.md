@@ -126,7 +126,7 @@
   ctx.fillRect(100, 100, 200, 300)
 	// 设置阴影后后面都会有
   ctx.font = '100px yahei'
-  ctx.fillText('测试这是', 300, 300)
+  ctx.fillText('测试这是', 300, 300)	// 文字内容、位置
   
   // 贝塞尔曲线绘制
   ctx.lineWidth = 6
