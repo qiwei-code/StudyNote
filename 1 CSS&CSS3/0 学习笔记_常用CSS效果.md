@@ -93,8 +93,39 @@
    perspective: 500;
    ```
 
-7. `outline`可拆分成`outline-width`，`outline-style`，`outline-color`
+7. `outline` 可拆分成`outline-width`，`outline-style`，`outline-color`
 
 
-8. `calc()`可用于计算的函
-9. `filter: blur(20px)`毛玻璃效果
+8. `calc()` 可用于计算的函          //  尽量少使用这个属性 
+
+9. `filter: blur(20px)` 毛玻璃效果
+
+10. `text-indent: 2em` 段落首行空两格
+
+11. `word-spacing`（词间距，添加每个单词之间的空白）
+
+12. `letter-spacing`（字间距，添加每个字母或汉字之间的空白）
+
+13. `initial-letter: 行高 沉度` 首字下沉效果，需要配合伪元素`first-letter`一起使用，`initial-letter`后面可以带两个值表示行高与沉度，例子：
+
+    ```css
+    .raised-cap::first-letter {
+      color: #bf4055;
+      initial-letter: 3 1;
+    }
+    .sunken-cap::first-letter {
+      color: #bf4055;
+      initial-letter: 3 2;
+    }
+    .drop-cap::first-letter {
+      color: #bf4055;
+      initial-letter: 3;
+    }
+    ```
+
+    效果图：
+
+    ![image-20201109100419107](0 学习笔记_常用CSS效果.assets/image-20201109100419107.png)
+
+
+
