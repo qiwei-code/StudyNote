@@ -73,6 +73,88 @@ store.dispatch({
 
 #### 2. Vuex中的map辅助函数
 
+**对于`state` **
+
+```vue
+<script>
+  import { mapState } from 'vuex'
+	export default {
+    computed: mapState({
+      // 可使用箭头函数
+      countA: state => state.count,
+      // 直接传参'count'获取局部状态，等同于'state => state.count'
+      countAlias: 'count',
+      // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+      countPlusLocalState (state) {
+        return state.count + this.localCount
+      }
+    })
+  }
+</script>
+```
+
+如果保持计算属性与state节点名相同，还可以直接传入字符串数组获取
+
+```vue
+<script>
+	import { mapState } from 'vuex'
+  export default {
+    computed: computed: mapState([
+    	// 映射 this.count 为 store.state.count
+  		'count'
+    ])
+  }
+</script>
+```
+
+还可以混入到`computed`中
+
+```vue
+<script>
+	import { mapState } from 'vuex'
+  export default {
+    computed: {
+      localComputed () { /* ... */ },
+      // 使用对象展开运算符将此对象混入到外部对象中
+      ...mapState({
+        // ...
+      })
+    }
+  }
+</script>
+```
+
+如果`state`带有多个命名空间
+
+```vue
+<script>
+	import { mapState } from 'vuex'
+  export default {
+    computed: {
+      ...this.mergedMapStates()
+    },
+    methods: {
+      mergedMapStates() {
+        let userMapState = mapState('user', ['addresses', 'creditCards'])
+        let vendorMapState = mapState ('vendor', ['products', 'ratings'])
+        return Object.assign({}, userMapState, vendorMapState)
+      }
+    }
+  }
+</script>
+```
+
+**对于mutations**
+
+
+
+
+
+
+
+
+
+
 
 
 
