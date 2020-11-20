@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 手动模拟实现new关键字
+/**
+ * 模拟实现new操作符
+ * @param {function} constructor [构造函数]
+ * @return {Object|function|Regex|Date|Error} [返回结果]
+ */
+function _new(constructor) {
+  if(typeof constructor !== 'function') {
+    throw '_new function the first param must be a function'
+  }
+  // 1. 创建一个空对象，作为返回的对象实例
+  // 2. 将这个空对象的原型指向构造行数的prototype属性
+
+  // ES6 new.target是指向构造函数
+  _new.target = constructor
+
+  var argsArr = [].slice.call(arguments, 1)
+  console.log(argsArr, '111111111111111111111')
+  var context = Object.create(constructor.prototype)
+  var result = constructor.apply(context, argsArr)
+  return (typeof result === 'object' && result != null) ? result : context
+}
+
+
+function doSome(name='lisi') {
+  this.name = name
+  function a() {
+    console.log(this.name)
+  }
+}
+
+let m = _new(doSome, 'yy', 'oooooo')
+let s = new doSome()
+console.log(m, s)
+</script>
+</html>
