@@ -9,39 +9,68 @@
   
 </body>
 <script>
-  // 手动模拟实现new关键字
-/**
- * 模拟实现new操作符
- * @param {function} constructor [构造函数]
- * @return {Object|function|Regex|Date|Error} [返回结果]
- */
-function _new(constructor) {
-  if(typeof constructor !== 'function') {
-    throw '_new function the first param must be a function'
-  }
-  // 1. 创建一个空对象，作为返回的对象实例
-  // 2. 将这个空对象的原型指向构造行数的prototype属性
+  // 最终版版 删除注释版，详细注释看文章
+// 浏览器环境 非严格模式
+function getGlobalObject(){
+    return this;
+}
+function generateFunctionCode(argsArrayLength){
+    var code = 'return arguments[0][arguments[1]](';
+    for(var i = 0; i < argsArrayLength; i++){
+        if(i > 0){
+            code += ',';
+        }
+        code += 'arguments[2][' + i + ']';
+    }
+    code += ')';
+    return code;
+}
+Function.prototype.applyFn = function apply(thisArg, argsArray){
+    if(typeof this !== 'function'){
+        throw new TypeError(this + ' is not a function');
+    }
+    if(typeof argsArray === 'undefined' || argsArray === null){
+        argsArray = [];
+    }
+    if(argsArray !== new Object(argsArray)){
+        throw new TypeError('CreateListFromArrayLike called on non-object');
+    }
+    if(typeof thisArg === 'undefined' || thisArg === null){
+        thisArg = getGlobalObject();
+    }
+    thisArg = new Object(thisArg);
+    var __fn = '__' + new Date().getTime();
+    var originalVal = thisArg[__fn];
+    var hasOriginalVal = thisArg.hasOwnProperty(__fn);
+    thisArg[__fn] = this;
+    var code = generateFunctionCode(argsArray.length);
+    var result = (new Function(code))(thisArg, __fn, argsArray);
+    delete thisArg[__fn];
+    if(hasOriginalVal){
+        thisArg[__fn] = originalVal;
+    }
+    return result;
+};
 
-  // ES6 new.target是指向构造函数
-  _new.target = constructor
-
-  var argsArr = [].slice.call(arguments, 1)
-  console.log(argsArr, '111111111111111111111')
-  var context = Object.create(constructor.prototype)
-  var result = constructor.apply(context, argsArr)
-  return (typeof result === 'object' && result != null) ? result : context
+Function.prototype.callFn = function call(thisArg){
+    var argsArray = [];
+    var argumentsLength = arguments.length;
+    for(var i = 0; i < argumentsLength - 1; i++){
+        argsArray[i] = arguments[i + 1];
+    }
+    return this.applyFn(thisArg, argsArray);
 }
 
 
-function doSome(name='lisi') {
-  this.name = name
-  function a() {
-    console.log(this.name)
-  }
+let a = {
+  name: 'qiwei'
 }
 
-let m = _new(doSome, 'yy', 'oooooo')
-let s = new doSome()
-console.log(m, s)
+function test(a, b) {
+  console.log(a+b, 'this is test', this.name)
+}
+
+console.log(test.applyFn(a, [12, 55]))
+
 </script>
 </html>
