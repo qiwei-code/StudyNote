@@ -11,8 +11,11 @@
 
 </body>
 <script>
-    
-    
+    let idCard = '110101199003074311'
+    let birthDay = /^\d{6}(\d{4})(\d{2})(\d{2})\d{4}$/
+    // let birthDay = /(\d{6})/
+    let val = birthDay.exec(idCard)
+    console.log(val)
 </script>
 
 </html>
