@@ -11,11 +11,41 @@
 
 </body>
 <script>
-    let idCard = '110101199003074311'
-    let birthDay = /^\d{6}(\d{4})(\d{2})(\d{2})\d{4}$/
-    // let birthDay = /(\d{6})/
-    let val = birthDay.exec(idCard)
-    console.log(val)
+    /**
+ * @param {Object} thisArg
+ * 模拟bind
+ */
+Function.prototype._bind = function bind(thisArg) {
+  if(typeof this !== 'function') {
+    throw new TypeError(this + 'must be a function')
+  }
+  let self = this
+  let args = [].slice.call(arguments, 1)
+  let bound = function() {
+    let boundArgs = [].slice.apply(arguments)
+    return self.apply(thisArg, args.concat(boundArgs))
+  }
+  return bound
+}
+
+
+
+let obj = {
+    name: 'qiwei',
+    age: 18,
+    like: 'code',
+    height: 182
+}
+
+let say = function(m, n) {
+    console.log(this.name + this.age + this.like + this.height)
+    console.log(m, n)
+}
+
+let test = say._bind(obj, 18)
+
+test(22)
+
 </script>
 
 </html>
