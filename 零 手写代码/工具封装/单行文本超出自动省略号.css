@@ -1,0 +1,6 @@
+/* 单行超出省略号 */
+.single-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
