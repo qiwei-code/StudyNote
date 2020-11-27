@@ -1,0 +1,12 @@
+// 多行文本超出自动省略号
+@mixin multiline-ellipsis($num: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal !important;
+
+  word-wrap: break-word;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num;
+}

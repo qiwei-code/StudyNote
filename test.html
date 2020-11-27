@@ -36,16 +36,56 @@
     </style>
 </head>
 <body>
-  <div class="testBox" onclick="test(event)">
-    测试盒子
-    <div class="test">测试</div>
-  </div>
+  <ul id="ul1" onclick="clickd()">
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
 </body>
 <script>
-  function test(event) {
-    let testDom = event.target
-    testDom.setAttribute('class', 'flag')
-  }
+
+function clickd(event) {
+
+  let ev = event || window.event
+  console.log(ev.target)
+}
+
+
+    /**
+ * @param {Object} thisArg
+ * 模拟bind
+ */
+// Function.prototype._bind = function bind(thisArg) {
+//   if(typeof this !== 'function') {
+//     throw new TypeError(this + 'must be a function')
+//   }
+//   let self = this
+//   let args = [].slice.call(arguments, 1)
+//   let bound = function() {
+//     let boundArgs = [].slice.apply(arguments)
+//     return self.apply(thisArg, args.concat(boundArgs))
+//   }
+//   return bound
+// }
+
+
+
+// let obj = {
+//     name: 'qiwei',
+//     age: 18,
+//     like: 'code',
+//     height: 182
+// }
+
+// let say = function(m, n) {
+//     console.log(this.name + this.age + this.like + this.height)
+//     console.log(m, n)
+// }
+
+// let test = say._bind(obj, 18)
+
+// test(22)
 
 </script>
 
