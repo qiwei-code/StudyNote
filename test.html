@@ -6,37 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      .testBox {
-        cursor: pointer;
-      }
-      .testBox, .test {
-        border: 1px solid red;
-        padding: 20px;
-
-      }
-      .test {
-        transform: translate(18px, 40px) rotatez(28deg) scale(0.5);
-        animation: tttset 5s infinite;
-      }
-      .flag {
-        transform: scale(0.2);
-        transition: all .5s ease-in-out;
-      }
-      @keyframes tttset {
-        0% {
-          transform: translate(-100px);
-        }
-        50% {
-          transform: translate(100px);
-        }
-        100% {
-          transform: translate(0);
-        }
-      }
+      
     </style>
 </head>
 <body>
-  <ul id="ul1" onclick="clickd()">
+  <ul id="ul1">
     <li>111</li>
     <li>222</li>
     <li>333</li>
@@ -44,49 +18,11 @@
 </ul>
 </body>
 <script>
-
-function clickd(event) {
-
-  let ev = event || window.event
-  console.log(ev.target)
-}
-
-
-    /**
- * @param {Object} thisArg
- * 模拟bind
- */
-// Function.prototype._bind = function bind(thisArg) {
-//   if(typeof this !== 'function') {
-//     throw new TypeError(this + 'must be a function')
-//   }
-//   let self = this
-//   let args = [].slice.call(arguments, 1)
-//   let bound = function() {
-//     let boundArgs = [].slice.apply(arguments)
-//     return self.apply(thisArg, args.concat(boundArgs))
-//   }
-//   return bound
-// }
-
-
-
-// let obj = {
-//     name: 'qiwei',
-//     age: 18,
-//     like: 'code',
-//     height: 182
-// }
-
-// let say = function(m, n) {
-//     console.log(this.name + this.age + this.like + this.height)
-//     console.log(m, n)
-// }
-
-// let test = say._bind(obj, 18)
-
-// test(22)
-
+  let test = document.open()
+  test.write('<p>hello world</p>')
+  document.writeln(1);
+document.writeln(2);
+  
 </script>
 
 </html>
