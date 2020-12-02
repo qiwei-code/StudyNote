@@ -2,32 +2,27 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+    </style>
 </head>
-  <div class="test">
-    <p class="tit">这是一个测试</p>
-    <div class="cont" id="divd">
-      <h1>这是一个大标题</h1>
-      <h2>这是一个副标题</h2>
-    </div>
-  </div>
 <body>
-
+  <ul id="ul1">
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
 </body>
 <script>
-  let divNode = document.getElementById('divd')
-  let h1 = divNode.firstChild
-  let h2 = divNode.lastElementChild
-  divNode.appendChild(document.createTextNode('Part 1'))
-  divNode.appendChild(document.createTextNode('Part 2'))
-  console.log(divNode.childNodes.length)
-  divNode.normalize()
-  console.log(divNode.childNodes.length)
-  document.readyStatechange(function() {
-    console.log('........')
-  })
+  let test = document.open()
+  test.write('<p>hello world</p>')
+  document.writeln(1);
+document.writeln(2);
+  
 </script>
 
 </html>
