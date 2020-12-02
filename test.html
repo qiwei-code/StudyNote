@@ -2,63 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
+  <div class="test">
+    <p class="tit">这是一个测试</p>
+    <div class="cont" id="divd">
+      <h1>这是一个大标题</h1>
+      <h2>这是一个副标题</h2>
+    </div>
+  </div>
 <body>
-  <ul id="ul1" onclick="clickd()">
-    <li>111</li>
-    <li>222</li>
-    <li>333</li>
-    <li>444</li>
-</ul>
+
 </body>
 <script>
-
-function clickd(event) {
-
-  let ev = event || window.event
-  console.log(ev.target)
-}
-
-
-    /**
- * @param {Object} thisArg
- * 模拟bind
- */
-// Function.prototype._bind = function bind(thisArg) {
-//   if(typeof this !== 'function') {
-//     throw new TypeError(this + 'must be a function')
-//   }
-//   let self = this
-//   let args = [].slice.call(arguments, 1)
-//   let bound = function() {
-//     let boundArgs = [].slice.apply(arguments)
-//     return self.apply(thisArg, args.concat(boundArgs))
-//   }
-//   return bound
-// }
-
-
-
-// let obj = {
-//     name: 'qiwei',
-//     age: 18,
-//     like: 'code',
-//     height: 182
-// }
-
-// let say = function(m, n) {
-//     console.log(this.name + this.age + this.like + this.height)
-//     console.log(m, n)
-// }
-
-// let test = say._bind(obj, 18)
-
-// test(22)
-
+  let divNode = document.getElementById('divd')
+  let h1 = divNode.firstChild
+  let h2 = divNode.lastElementChild
+  divNode.appendChild(document.createTextNode('Part 1'))
+  divNode.appendChild(document.createTextNode('Part 2'))
+  console.log(divNode.childNodes.length)
+  divNode.normalize()
+  console.log(divNode.childNodes.length)
+  document.readyStatechange(function() {
+    console.log('........')
+  })
 </script>
 
 </html>
