@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body *:not(span) {
+      display: inline-block;
+      border: 3px solid red;
+      padding: 50px;
+    }
+    body span {
+      display: inline-block;
+      transform: translateX(-20px);
+    }
+  </style>
+</head>
+<script>
+  window.onload = function() {
+    let div = document.getElementsByTagName('div')[0]
+    let ul = document.getElementsByTagName('ul')[0]
+    let li = document.getElementsByTagName('li')[0]
+    let p = document.getElementsByTagName('p')[0]
+    let a = document.getElementsByTagName('a')[0]
+    console.log(div,ul,li,p,a)
+
+
+    div.addEventListener('click', function() {
+      console.log('这是DIV')
+    }, false)
+    ul.addEventListener('click', function() {
+      console.log('这是UL')
+    }, false)
+    li.addEventListener('click', function() {
+      console.log('这是LI')
+    }, false)
+    p.addEventListener('click', function() {
+      console.log('这是P')
+    }, false)
+    a.addEventListener('click', function() {
+      console.log('这是A')
+    }, false)
+  }
+</script>
+<body>
+  <div>
+    <span>div</span>
+    <ul>
+      <span>ul</span>
+      <li>
+        <span>li</span>
+        <p>
+          <span>p</span>
+          <a href="#">a</a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
