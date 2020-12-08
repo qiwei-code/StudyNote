@@ -1,1 +1,0 @@
-//参考地址 https://wangdoc.com/javascript/dom/document.html#documentexeccommand%EF%BC%8Cdocumentquerycommandsupported%EF%BC%8Cdocumentquerycommandenabled

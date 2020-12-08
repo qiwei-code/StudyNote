@@ -7,22 +7,34 @@
     <title>Document</title>
     <style>
       
+      /* * {
+        animation: circle 1s infinite;
+      } */
+      @keyframes circle{0%{transform: rotate(0deg)}100%{transform: rotate(360deg)}}
     </style>
 </head>
 <body>
   <ul id="ul1">
-    <li>111</li>
+    <li contenteditable="true">111</li>
     <li>222</li>
     <li>333</li>
     <li>444</li>
 </ul>
+<button onclick="loading()">测试的哦</button>
+<div id="uu" contenteditable="true">顶顶顶顶顶顶顶顶顶顶顶顶</div>
+<textarea name="" id="" cols="30" rows="10"></textarea>
 </body>
 <script>
-  let test = document.open()
-  test.write('<p>hello world</p>')
-  document.writeln(1);
-document.writeln(2);
-  
+  function loading() {
+    let cover = document.createElement('div')
+    cover.style.cssText = "position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, .2);display: flex; align-items: center;justify-content: center"
+    let img = document.createElement('img')
+    img.src = './load.png'
+    img.style.cssText = "width: 70px; height: 70px; animation: circle .5s infinite;"
+
+    cover.appendChild(img)
+    document.body.appendChild(cover)
+  }
 </script>
 
 </html>
